@@ -18,30 +18,17 @@ from tabulate import tabulate
 from sympy import var
 from sympy import sympify
 
-def functionLexer():
+def functionLexer(fun, valor1):
     x = var('x')
-    y = var('y')
-    z = var('z')
-    print("""
-    1. Sum = '+'
-    2. Substract = '-'
-    3. Multiply = 
-    4. Division = '/'
-    5. Power = '**'
-    6. Root = '**(1/n)'
-    7. Priority = '()'
-    """)
-    fun = input('Ingresa tu funcion basado en x, y, z: ')
     expr = sympify(fun)
-    valor1 = input('Ingrese el valor de x: ')
     res1 = expr.subs(x, valor1)
-    if ('y' in fun):
-        valor2 = input('Ingrese el valor de y: ')
-        res1 = res1.subs(y, valor2)
-    if ('z' in fun):
-        valor3 = input('Ingrese el valor de z: ')
-        res1 = res1.subs(z, valor3)
-    print(res1)
+    # if ('y' in fun):
+    #     valor2 = input('Ingrese el valor de y: ')
+    #     res1 = res1.subs(y, valor2)
+    # if ('z' in fun):
+    #     valor3 = input('Ingrese el valor de z: ')
+    #     res1 = res1.subs(z, valor3)
+    return float(res1)
 
 def regula_falsi():
     operadores = [
@@ -61,19 +48,19 @@ def regula_falsi():
     print(tabulate(operadores, headers=head, tablefmt="grid"))
     print()
     # Ingreso de la funcion, a, b y tolerancia
-    fx = lambda x: math.exp(-x) * -x
+    fun = input('Ingresa tu funcion (guiate con la Tabla No. 1): ')
     a = float(input("Ingrese a: "))
     b = float(input("Ingrese b: "))
     tolera = float(input("Ingrese la tolerancia del error: "))
 
     tabla = []
     puntos = abs(b-a)
-    fa = fx(a)
-    fb = fx(b)
+    fa = functionLexer(fun,a)
+    fb = functionLexer(fun,b)
     while not(puntos <= tolera):
         # Para hallar la intersección de la recta con el eje X
         c = b - fb * (a - b ) / (fa - fb)
-        fc = fx(c)
+        fc = functionLexer(fun,c)
         tabla.append([a,c,b,fa,fc,fb,puntos])
         # cambio de signo
         cambio = np.sign(fa)*np.sign(fc)
@@ -90,11 +77,12 @@ def regula_falsi():
 
     head = ["a", "c", "b", "f(a)", "f(c)", "f(b)", "margen de error"]
     print()
-    print("                                              Tabla No.2")
+    print("                                    Tabla No.2")
     print(tabulate(tabla, headers=head, tablefmt="grid"))
     print()
     print("Número de iteraciones: ", ntabla)
     print("Raiz: ", c)
     print("Error: ", puntos)
+    print()
 
 regula_falsi()
