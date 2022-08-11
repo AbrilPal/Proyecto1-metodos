@@ -273,7 +273,7 @@ def regula_falsi(fun, a, b, tolera=1E-10):
     # mostrar tabla de iteraciones
     head = ["a", "c", "b", "f(a)", "f(c)", "f(b)", "margen de error"]
     print()
-    print("Tabla No.2")
+    print("Tabla No.1")
     print(tabulate(tabla, headers=head, tablefmt="grid"))
     print()
     # RESULTADOS
@@ -286,16 +286,35 @@ def regula_falsi(fun, a, b, tolera=1E-10):
 formulas = ["Newton Raphson", "Bisección", "Secante", "Regula Falsi"]
 y = symbols("y")
 fun = 7 * exp(-y) * sin(y - 1)
+fun2 = y**3- 3*y
+fun3 = y**3 + 4*y**2 - 10
 fundif = fun.diff(y)
+fundif2 = fun2.diff(y)
+fundif3 = fun3.diff(y)
 
 def funcion(y):
     f = str(fun).replace("y", str(y))
+    return float(eval(f))
+
+def funcion2(y):
+    f = str(fun2).replace("y", str(y))
+    return float(eval(f))
+
+def funcion3(y):
+    f = str(fun3).replace("y", str(y))
     return float(eval(f))
 
 def derivada(y):
     f = str(fundif).replace("y", str(y))
     return float(eval(f))
 
+def derivada2(y):
+    f = str(fundif2).replace("y", str(y))
+    return float(eval(f))
+
+def derivada3(y):
+    f = str(fundif3).replace("y", str(y))
+    return float(eval(f))
 
 def methods_excercise():
     print('\n\nEjercicio 3 de la hoja de trabajo\n\n')
@@ -303,6 +322,24 @@ def methods_excercise():
     newtonRaphson, itersNR = MetodoNewton(funcion, derivada, 0.3)
     biseccion, itersB = MetodoBiseccion(funcion, 0.1, 0.3)
     secante, itersS = MetodoSecante(funcion, 0.1, 0.3)
+    results = [newtonRaphson, biseccion, secante, regulaFalsi]
+    steps = [itersNR, itersB, itersS, itersRF]
+    print(tabulate({'formulas': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
+
+    print('\n\nEjemplo 2\n\n')
+    regulaFalsi, itersRF = regula_falsi(funcion2, 1, 3)
+    newtonRaphson, itersNR = MetodoNewton(funcion2, derivada2, 3)
+    biseccion, itersB = MetodoBiseccion(funcion2, 1, 3)
+    secante, itersS = MetodoSecante(funcion2, 1, 3)
+    results = [newtonRaphson, biseccion, secante, regulaFalsi]
+    steps = [itersNR, itersB, itersS, itersRF]
+    print(tabulate({'formulas': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
+
+    print('\n\nEjemplo 3\n\n')
+    regulaFalsi, itersRF = regula_falsi(funcion3, 1, 2)
+    newtonRaphson, itersNR = MetodoNewton(funcion3, derivada3, 2)
+    biseccion, itersB = MetodoBiseccion(funcion3, 1, 2)
+    secante, itersS = MetodoSecante(funcion3, 1, 2)
     results = [newtonRaphson, biseccion, secante, regulaFalsi]
     steps = [itersNR, itersB, itersS, itersRF]
     print(tabulate({'formulas': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
