@@ -284,7 +284,7 @@ def regula_falsi(fun, a, b, tolera=1E-10):
 
 formulas = ["Newton Raphson", "Bisección", "Secante", "Regula Falsi"]
 y = symbols("y")
-fun = 7 * exp(-y) * sin(y - 1)
+fun = exp(-y) + cos(y)
 fun2 = y**3 -3*y
 fun3 = y**3 + 4*y**2 - 10
 fundif = fun.diff(y)
@@ -317,10 +317,10 @@ def derivada3(y):
 
 def methods_excercise():
     print('\n\nEjercicio 3 de la hoja de trabajo\n\n')
-    regulaFalsi, itersRF = regula_falsi(funcion, 0.1, 0.3)
-    newtonRaphson, itersNR = MetodoNewton(funcion, derivada, 0.3)
-    biseccion, itersB = MetodoBiseccion(funcion, 0.1, 0.3)
-    secante, itersS = MetodoSecante(funcion, 0.1, 0.3)
+    regulaFalsi, itersRF = regula_falsi(funcion, 1, 2)
+    newtonRaphson, itersNR = MetodoNewton(funcion, derivada, 1)
+    biseccion, itersB = MetodoBiseccion(funcion, 1, 2)
+    secante, itersS = MetodoSecante(funcion, 1, 2)
     results = [newtonRaphson, biseccion, secante, regulaFalsi]
     steps = [itersNR, itersB, itersS, itersRF]
     print("Tabla No.1")
@@ -347,7 +347,7 @@ def methods_excercise():
     print(tabulate({'formulas': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
 
     print('\n\nDiscusión de resultados\n\n')
-    print("En las tablas de resultados se puede observar que el método de Newton-Raphson siempre tiene las iteraciones/pasos más bajos a comparación de los otros \nmétodos, esto puede ser porque el método de Newton es un método abierto y que su eficiencia es mejor en ecuaciones no lineales como las usadas en el \nproyecto. Por otro lado, el método Regula Falsi muestra una menor eficiencia porque, como se puede observar en las tablas 1 y 2, \nes el método con más iteraciones/paso hasta llegar a la tolerancia de error esperado. Esto se puede deber a que es un método cerrado, es \ndecir que depende de un intervalo a y b como el método de Bisección. También que el método Regula False bajo ciertas condiciones este tiene orden de convergencia \nlineal, por lo que suele converger más lentamente a la solución de la ecuación. Aunque como se puede observar en la tabla 3 el método \nde Regula Falsi realizó menos iteraciones/pasos que el método de Bisección y esto puede ser que se ingresó un intervalo más pequeño y que la ecuación dada para este ejemplo es \nmás favorable para este método en específico.")
+    print("En las tablas de resultados se puede observar que el método de Newton-Raphson siempre tiene las iteraciones/pasos más bajos a comparación de los otros \nmétodos, esto puede ser porque el método de Newton es un método abierto y que su eficiencia es mejor en ecuaciones no lineales como las usadas en el \nproyecto. Por otro lado, el método Regula Falsi muestra una menor eficiencia porque, como se puede observar en las tablas 1 y 2, \nes el método con más iteraciones/paso hasta llegar a la tolerancia de error esperado. Esto se puede deber a que es un método cerrado, es \ndecir que depende de un intervalo a y b como el método de Bisección. También que el método Regula False bajo ciertas condiciones este tiene orden de convergencia lineal, por lo que suele converger más lentamente a la solución de la ecuación. Aunque como se puede observar en la tabla 3 el método \nde Regula Falsi realizó menos iteraciones/pasos que el método de Bisección y esto puede ser que se ingresó un intervalo más pequeño y que la ecuación dada para este ejemplo es \nmás favorable para este método en específico.")
     print('\n\nConclusiones\n\n')
     print("1. El método de Newton-Raphson es el más preciso y eficiente a comparación de los métodos de Secante, Bisección y Regula Falsi.")
     print("2. Los métodos abiertos son mas eficientes.")
