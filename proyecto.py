@@ -324,7 +324,7 @@ def methods_excercise():
     results = [newtonRaphson, biseccion, secante, regulaFalsi]
     steps = [itersNR, itersB, itersS, itersRF]
     print("Tabla No.1")
-    print(tabulate({'formulas': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
+    print(tabulate({'Método': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
 
     print('\n\nEjemplo 2\n\n')
     regulaFalsi, itersRF = regula_falsi(funcion2, 1, 3)
@@ -334,7 +334,7 @@ def methods_excercise():
     results = [newtonRaphson, biseccion, secante, regulaFalsi]
     steps = [itersNR, itersB, itersS, itersRF]
     print("Tabla No.2")
-    print(tabulate({'formulas': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
+    print(tabulate({'Método': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
 
     print('\n\nEjemplo 3\n\n')
     regulaFalsi, itersRF = regula_falsi(funcion3, 1, 2)
@@ -344,7 +344,7 @@ def methods_excercise():
     results = [newtonRaphson, biseccion, secante, regulaFalsi]
     steps = [itersNR, itersB, itersS, itersRF]
     print("Tabla No.3")
-    print(tabulate({'formulas': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
+    print(tabulate({'Método': formulas,'pasos':steps, 'resultados': results}, headers="keys", tablefmt='fancy_grid'))
 
     print('\n\nDiscusión de resultados\n\n')
     print("En las tablas de resultados se puede observar que el método de Newton-Raphson siempre tiene las iteraciones/pasos más bajos a comparación de los otros \nmétodos, esto puede ser porque el método de Newton es un método abierto y que su eficiencia es mejor en ecuaciones no lineales como las usadas en el \nproyecto. Por otro lado, el método Regula Falsi muestra una menor eficiencia porque, como se puede observar en las tablas 1 y 2, \nes el método con más iteraciones/paso hasta llegar a la tolerancia de error esperado. Esto se puede deber a que es un método cerrado, es \ndecir que depende de un intervalo a y b como el método de Bisección. También que el método Regula False bajo ciertas condiciones este tiene orden de convergencia lineal, por lo que suele converger más lentamente a la solución de la ecuación. Aunque como se puede observar en la tabla 3 el método \nde Regula Falsi realizó menos iteraciones/pasos que el método de Bisección y esto puede ser que se ingresó un intervalo más pequeño y que la ecuación dada para este ejemplo es \nmás favorable para este método en específico.")
